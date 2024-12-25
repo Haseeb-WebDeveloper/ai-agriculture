@@ -14,14 +14,14 @@ export default function Home() {
         </div>
 
         {/* Background Image */}
-        <div className="absolute inset-0 opacity-10">
+        {/* <div className="absolute inset-0 opacity-10">
           <Image
             src="/hero-bg.jpg"
             alt="Agriculture Background"
             fill
             className="object-cover"
           />
-        </div>
+        </div> */}
 
         {/* Team Navigation */}
         <div className="mt-20 relative z-10">
