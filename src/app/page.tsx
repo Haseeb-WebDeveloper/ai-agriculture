@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Leaf, Brain, LineChart, Microscope, Bot } from 'lucide-react';
+import { Leaf, Brain, LineChart, Microscope, Bot, AlertTriangle } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Home() {
@@ -68,8 +68,8 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Minahil's Section */}
-            <Link href="/minahil-zainab"
+            {/* Manahil's Section */}
+            <Link href="/manahil-zainab"
               className="group relative overflow-hidden rounded-xl bg-card/50 backdrop-blur-sm p-6 transition-all hover:shadow-lg hover:scale-105 border border-border/50">
               <div className="relative">
                 <Image
@@ -82,7 +82,7 @@ export default function Home() {
                 <div className="flex items-start gap-4">
                   <Bot className="w-8 h-8 text-primary" />
                   <div>
-                    <h3 className="text-xl font-semibold text-card-foreground">Minahil Zainab</h3>
+                    <h3 className="text-xl font-semibold text-card-foreground">Manahil Zainab</h3>
                     <p className="text-sm text-muted-foreground">Agriculture Robotics & Applications</p>
                   </div>
                 </div>
@@ -94,7 +94,7 @@ export default function Home() {
               className="group relative overflow-hidden rounded-xl bg-card/50 backdrop-blur-sm p-6 transition-all hover:shadow-lg hover:scale-105 border border-border/50">
               <div className="relative">
                 <Image
-                  src="/disease-diagnose-minahi-content-1.jpg"
+                  src="/khola-1.jpg"
                   alt="Disease Detection"
                   width={400}
                   height={200}
@@ -105,6 +105,27 @@ export default function Home() {
                   <div>
                     <h3 className="text-xl font-semibold text-card-foreground">Khola Qasim</h3>
                     <p className="text-sm text-muted-foreground">Disease Detection & Management</p>
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Laraib's Section */}
+            <Link href="/laraib"
+              className="group relative overflow-hidden rounded-xl bg-card/50 backdrop-blur-sm p-6 transition-all hover:shadow-lg hover:scale-105 border border-border/50">
+              <div className="relative">
+                <Image
+                  src="/limitations.jpg"
+                  alt="AI Limitations"
+                  width={400}
+                  height={200}
+                  className="rounded-lg mb-4 object-cover h-48 w-full"
+                />
+                <div className="flex items-start gap-4">
+                  <AlertTriangle className="w-8 h-8 text-primary" />
+                  <div>
+                    <h3 className="text-xl font-semibold text-card-foreground">Laraib</h3>
+                    <p className="text-sm text-muted-foreground">Limitations of AI in Agriculture</p>
                   </div>
                 </div>
               </div>

@@ -24,6 +24,17 @@ Weather Variability​
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 this is abdullah afzal content
 
 : Key Advantages of AI in Agriculture**
@@ -59,7 +70,42 @@ this is abdullah afzal content
 
 
 
-this is minahil zainab content
+
+
+
+
+
+
+
+
+
+
+this is laraib content
+Limitations of using AI in agriculture​ 
+Limitations:​
+Technology Access and Usability.​
+Scalability.​
+Initial Costs.​
+Ethical and Environmental Concerns.​
+Lack of Seamless Integration.​
+Research limitations (needs empirical validation across countries or states to understand the effectiveness and relevance).​
+​Unemployment:​
+Limited Functionality:​
+E-Waste Problems​
+Market Concentration​
+
+​
+
+
+
+
+
+
+
+
+
+
+this is khola content
 Applications of AI in Agriculture
 AI in agriculture is involved in improving crop yields and predicting weather patterns.
 It can help in monitoring soil health, managing irrigation systems, and improving the quality of farming practices. 
@@ -74,7 +120,19 @@ Targeted Application: AI and sensors guide precise spraying of pesticides or fer
 Real-Time Data Use: Systems rely on UAVs, vehicles, or stationary devices to detect specific crop deficiencies.
 
 
-this is khola qasim content
+
+
+
+
+
+
+
+
+
+
+
+
+this is  manahil zainab content
 Disease Diagnosis (Detection)
 Early Detection:
 AI spots plant diseases using drone/camera images.
@@ -92,4 +150,10 @@ Data-Driven Adjustments:
 AI adjusts irrigation and planting based on data.
 
 
-this is laraib content //coming soon
+
+
+
+
+
+wasif content only tool (no need to make changes)
+

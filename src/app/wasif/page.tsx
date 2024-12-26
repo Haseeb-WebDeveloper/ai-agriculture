@@ -109,7 +109,7 @@ export default function Home() {
         {/* Plant Analysis Tool Section */}
         <section className="py-16 mx-auto max-w-6xl">
           <h2 className="text-3xl font-bold text-center mb-12">Plant Disease Detection</h2>
-          <div className="grid grid-cols-1 gap-8 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div className="space-y-6">
               <Card>
                 <CardContent className="pt-6">
