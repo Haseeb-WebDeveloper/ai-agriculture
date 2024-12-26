@@ -11,12 +11,12 @@ export default function ManahilZainab() {
         <section className="space-y-6">
           <div className="relative h-[300px] rounded-2xl overflow-hidden">
             <Image
-              src="/disease-diagnose-minahi-content-1.jpg"
+              src="/agriculture robotics-minahi-content-1.jpg"
               alt="Disease Diagnosis"
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center">
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/70  flex items-center">
               <div className="p-8 text-white max-w-2xl">
                 <h2 className="text-3xl font-bold flex items-center gap-2">
                   <Microscope className="h-8 w-8" />

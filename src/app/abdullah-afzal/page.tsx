@@ -15,7 +15,7 @@ export default function AbdullahAfzal() {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center">
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/70  flex items-center">
             <div className="p-8 text-white max-w-2xl">
               <h2 className="text-3xl font-bold mb-4">Precision Farming</h2>
               <p className="text-lg">

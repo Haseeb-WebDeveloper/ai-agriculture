@@ -16,7 +16,7 @@ export default function KholaQasim() {
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex items-center">
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/70  flex items-center">
               <div className="p-8 text-white max-w-2xl">
                 <p className="mt-2 text-gray-200">
                   AI in agriculture is involved in improving crop yields and predicting weather patterns.
