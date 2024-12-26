@@ -115,7 +115,7 @@ export default function Home() {
               className="group relative overflow-hidden rounded-xl bg-card/50 backdrop-blur-sm p-6 transition-all hover:shadow-lg hover:scale-105 border border-border/50">
               <div className="relative">
                 <Image
-                  src="/limitations.jpg"
+                  src="/liraib-1.jpg"
                   alt="AI Limitations"
                   width={400}
                   height={200}
