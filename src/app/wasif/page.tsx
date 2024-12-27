@@ -8,7 +8,11 @@ import { Upload, X, AlertCircle, Leaf, Brain, Cloud, Users, Layout } from "lucid
 import Link from "next/link";
 
 interface Analysis {
-  analysis: string;
+  diseaseName: string;
+  stage: string;
+  mainCauses: string;
+  nutrientsDeficiency: string;
+  personalizedAdvice: string;
 }
 
 export default function Home() {
@@ -17,6 +21,7 @@ export default function Home() {
   const [isAnalyzing, setIsAnalyzing] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [dragActive, setDragActive] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState<string | null>(null);
 
   const handleImageUpload = async (file: File) => {
     if (file) {
@@ -24,6 +29,7 @@ export default function Home() {
       setIsAnalyzing(true);
       setError(null);
       setAnalysis(null);
+      setActiveTab(null);
       
       try {
         const formData = new FormData();
@@ -69,121 +75,134 @@ export default function Home() {
     }
   };
 
+  const renderAnalysisContent = () => {
+    if (!analysis || !activeTab) return null;
+
+    const content = {
+      disease: {
+        title: "Disease Information",
+        content: analysis.diseaseName,
+        icon: <AlertCircle className="w-5 h-5" />
+      },
+      stage: {
+        title: "Disease Stage",
+        content: analysis.stage,
+        icon: <Brain className="w-5 h-5" />
+      },
+      causes: {
+        title: "Main Causes",
+        content: analysis.mainCauses,
+        icon: <Cloud className="w-5 h-5" />
+      },
+      nutrients: {
+        title: "Nutrients Deficiency",
+        content: analysis.nutrientsDeficiency,
+        icon: <Leaf className="w-5 h-5" />
+      },
+      advice: {
+        title: "Personalized Advice",
+        content: analysis.personalizedAdvice,
+        icon: <Users className="w-5 h-5" />
+      }
+    }[activeTab];
+
+    return (
+      <Card className="mt-4">
+        <CardHeader className="flex flex-row items-center gap-2">
+          {content?.icon}
+          <CardTitle className="text-xl">{content?.title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-muted-foreground">{content?.content}</p>
+        </CardContent>
+      </Card>
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-background container mx-auto px-4 py-12">
-
-        {/* Features Grid */}
-        {/* <div className="grid md:grid-cols-2 gap-6">
-          <Card className="p-6 hover:shadow-lg transition-shadow">
-            <h3 className="text-xl font-semibold mb-3">Real-time Analysis</h3>
-            <p className="text-muted-foreground">
-              Get instant results and recommendations using advanced AI algorithms
-            </p>
-          </Card>
-
-          <Card className="p-6 hover:shadow-lg transition-shadow">
-            <h3 className="text-xl font-semibold mb-3">Multiple Crop Support</h3>
-            <p className="text-muted-foreground">
-              Works with various crop types and common agricultural plants
-            </p>
-          </Card>
-
-          <Card className="p-6 hover:shadow-lg transition-shadow">
-            <h3 className="text-xl font-semibold mb-3">Treatment Suggestions</h3>
-            <p className="text-muted-foreground">
-              Receive detailed treatment recommendations and preventive measures
-            </p>
-          </Card>
-
-          <Card className="p-6 hover:shadow-lg transition-shadow">
-            <h3 className="text-xl font-semibold mb-3">Easy to Use</h3>
-            <p className="text-muted-foreground">
-              Simple drag-and-drop interface for quick disease detection
-            </p>
-          </Card>
-        </div> */}
-     <Link href="/" 
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-4 py-12">
+        <Link href="/" 
           className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-8">
           ← Back to Home
         </Link>
-        {/* Plant Analysis Tool Section */}
-        <section className="py-16 mx-auto max-w-6xl">
+
+        <section className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Plant Disease Detection</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            <div className="space-y-6">
-              <Card>
-                <CardContent className="pt-6">
-                  <div 
-                    className={`
-                      border-2 border-dashed rounded-lg p-6
-                      ${dragActive ? 'border-primary' : 'border-muted'}
-                      transition-colors duration-200
-                    `}
-                    onDragEnter={handleDrag}
-                    onDragLeave={handleDrag}
-                    onDragOver={handleDrag}
-                    onDrop={handleDrop}
-                  >
-                    {selectedImage ? (
-                      <div className="relative aspect-square w-full max-w-lg mx-auto">
-                        <Image
-                          src={selectedImage}
-                          alt="Uploaded plant"
-                          fill
-                          className="object-contain rounded-lg"
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Upload Section */}
+            <Card className="lg:sticky lg:top-8">
+              <CardContent className="p-6">
+                <div 
+                  className={`
+                    min-h-[300px] flex items-center justify-center rounded-lg border-2 border-dashed
+                    ${dragActive ? 'border-primary' : 'border-muted'}
+                    transition-colors duration-200
+                  `}
+                  onDragEnter={handleDrag}
+                  onDragLeave={handleDrag}
+                  onDragOver={handleDrag}
+                  onDrop={handleDrop}
+                >
+                  {selectedImage ? (
+                    <div className="relative w-full aspect-video">
+                      <Image
+                        src={selectedImage}
+                        alt="Uploaded plant"
+                        fill
+                        className="object-contain rounded-lg"
+                      />
+                      <Button
+                        size="icon"
+                        variant="destructive"
+                        className="absolute top-2 right-2"
+                        onClick={() => {
+                          setSelectedImage(null);
+                          setAnalysis(null);
+                          setActiveTab(null);
+                        }}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="text-center p-12">
+                      <Upload className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
+                      <p className="text-muted-foreground mb-4">
+                        Drag and drop your plant photo here or
+                      </p>
+                      <div className="relative">
+                        <input
+                          type="file"
+                          id="file-upload"
+                          className="hidden"
+                          accept="image/*"
+                          onChange={(e) => {
+                            const files = e.target.files;
+                            if (files && files[0]) {
+                              handleImageUpload(files[0]);
+                            }
+                          }}
                         />
                         <Button
-                          size="icon"
-                          variant="destructive"
-                          className="absolute -top-2 -right-2"
-                          onClick={() => {
-                            setSelectedImage(null);
-                            setAnalysis(null);
-                          }}
+                          onClick={() => document.getElementById('file-upload')?.click()}
+                          className="relative"
                         >
-                          <X className="h-4 w-4" />
+                          Choose Photo
                         </Button>
                       </div>
-                    ) : (
-                      <div className="text-center">
-                        <Upload className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
-                        <p className="text-muted-foreground mb-4">
-                          Drag and drop your plant photo here or
-                        </p>
-                        <label>
-                          <Button asChild>
-                            <span>Choose Photo</span>
-                          </Button>
-                          <input
-                            type="file"
-                            className="hidden"
-                            accept="image/*"
-                            onChange={(e) => {
-                              const files = e.target.files;
-                              if (files && files[0]) {
-                                handleImageUpload(files[0]);
-                              }
-                            }}
-                          />
-                        </label>
-                      </div>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
 
-              {error && (
-                <Alert variant="destructive">
-                  <AlertCircle className="h-4 w-4" />
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
-              )}
-            </div>
-
-            <div className="lg:sticky lg:top-8 space-y-6">
+            {/* Analysis Section */}
+            <div className="space-y-4">
               {isAnalyzing ? (
                 <Card>
-                  <CardContent className="pt-6 text-center">
+                  <CardContent className="p-6 text-center">
                     <div className="inline-flex items-center justify-center w-16 h-16 mb-4">
                       <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
                     </div>
@@ -192,23 +211,58 @@ export default function Home() {
                   </CardContent>
                 </Card>
               ) : analysis && (
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Analysis Results</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="prose dark:prose-invert max-h-[60vh] overflow-y-auto custom-scrollbar">
-                      <div className="whitespace-pre-wrap">
-                        {analysis.analysis}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <Button
+                      variant={activeTab === 'disease' ? 'default' : 'outline'}
+                      onClick={() => setActiveTab('disease')}
+                      className="w-full"
+                    >
+                      Disease
+                    </Button>
+                    <Button
+                      variant={activeTab === 'stage' ? 'default' : 'outline'}
+                      onClick={() => setActiveTab('stage')}
+                      className="w-full"
+                    >
+                      Stage
+                    </Button>
+                    <Button
+                      variant={activeTab === 'causes' ? 'default' : 'outline'}
+                      onClick={() => setActiveTab('causes')}
+                      className="w-full"
+                    >
+                      Causes
+                    </Button>
+                    <Button
+                      variant={activeTab === 'nutrients' ? 'default' : 'outline'}
+                      onClick={() => setActiveTab('nutrients')}
+                      className="w-full"
+                    >
+                      Nutrients
+                    </Button>
+                    <Button
+                      variant={activeTab === 'advice' ? 'default' : 'outline'}
+                      onClick={() => setActiveTab('advice')}
+                      className="w-full md:col-span-2"
+                    >
+                      Advice
+                    </Button>
+                  </div>
+                  {renderAnalysisContent()}
+                </div>
+              )}
+
+              {error && (
+                <Alert variant="destructive">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
               )}
             </div>
           </div>
         </section>
-
+      </div>
     </div>
   );
 }
