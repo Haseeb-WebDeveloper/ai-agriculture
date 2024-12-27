@@ -21,7 +21,7 @@ Note: Provide a direct, factual analysis without using phrases like "I can" or "
 
     console.log("TRYING TO ANALYZE IMAGE");
     const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "gpt-3.5-turbo",
       messages: [
         {
           role: "user",
@@ -37,7 +37,12 @@ Note: Provide a direct, factual analysis without using phrases like "I can" or "
       max_tokens: 500,
     });
 
-    console.log(response.choices[0].message.content);
+    console.log("RESPONSE",response.choices[0].message.content);
+    console.log("USAGE",response.usage);
+    console.log("COMPLETION TOKENS",response.usage.completion_tokens);
+    console.log("PROMPT TOKENS",response.usage.prompt_tokens);
+    console.log("TOTAL TOKENS",response.usage.total_tokens);
+    console.log("TOTAL TOKENS",response.usage.prompt_tokens + response.usage.completion_tokens);
     return {
       analysis: response.choices[0].message.content
     };
