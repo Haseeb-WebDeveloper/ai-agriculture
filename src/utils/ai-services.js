@@ -11,13 +11,13 @@ export async function analyzeImage(imageBuffer) {
 
     const promptContent = `Based on the provided image, analyze the plant and provide the answer in the following very strict format:
 
-Disease Name: (just the name)
-Stage of the disease: (e.g. Early, Mid, Late)
-Main Causes: (e.g. Fungus, Bacteria, Virus, etc.)
-Specific Nutrients deficiency: (e.g. Nitrogen, Phosphorus, Potassium, etc.)
-Personalized advice: (e.g. Apply fertilizer, water the plant, etc.)
+Disease Name: (name with short description)
+Stage of the disease: ( with short description)
+Main Causes:
+Specific Nutrients deficiency:
+Personalized advice: 
 
-Note: Provide a direct and short as much as possible, factual analysis without using phrases like "I can" or "I think". Present the information in plain text format without markdown headers.`;
+Note: Provide a actual analysis without using phrases like "I can" or "I think". Present the information in plain text format without markdown headers.`;
 
     console.log("TRYING TO ANALYZE IMAGE");
     const response = await openai.chat.completions.create({
