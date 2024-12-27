@@ -55,6 +55,7 @@ export default function Home() {
     }
   };
 
+  
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
